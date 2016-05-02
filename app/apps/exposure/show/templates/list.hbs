@@ -1,0 +1,20 @@
+<div class="table-responsive">
+	<table class="table table-hover" id="listTable">
+		<thead>
+			<tr>
+				<th data-sort="group-name">Name</th>
+				<th data-sort="group-numItems" class="text-center" data-sort="companies">Companies</th>
+				<th data-sort="group-totalExposure" class="text-center" data-sort="total">Total</th>
+				<th data-sort="group-minExposure" class="text-center">Lowest</th>
+	      <th data-sort="group-maxExposure" class="text-center">Highest</th>
+				<th data-sort="group-avgExposure" class="text-center" data-sort="average">Average</th>
+	      {{#for 0 10 1}}
+	      <th class="text-right">{{ this }}</th>
+	      {{/for}}
+			</tr>
+		</thead>
+
+		<tbody>
+		</tbody>
+	</table>
+</div>

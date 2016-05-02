@@ -1,0 +1,234 @@
+<div id="header-container" class="main-color topbar-secondary">
+  <div class="container padding-top-double padding-bottom-double">
+
+    <div class="container">
+      <div class="row margin-bottom">
+        <div class="col-sm-3">
+          <h4 class="no-margin hidden">Company</h4>
+          <h2>{{ company.name }}</h2>
+          <div>{{ company.sector }}</div>
+          <div>{{ company.employees }} Employees</div>
+          <div class="margin-top-half">
+            <div class="row">
+              <div class="col-xs-1 text-right"><i class="ti-location-pin"></i></div>
+              <div class="col-xs-9">{{{ company.address }}}</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-1 text-right"><i class="fa fa-phone"></i></div>
+              <div class="col-xs-9">{{ company.phone }}</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-1 text-right"><i class="ti-world"></i></div>
+              <div class="col-xs-9"><a href="{{ company.url }}" target="_blank">{{ company.url }}</a></div>
+            </div>
+          </div>
+          <div class="margin-top-half">
+            <button type="button" class="btn btn-sm btn-transparent" data-toggle="modal" data-target="#companyInfo">
+              View Company Profile
+            </button>
+          </div>
+        </div>
+
+        <div class="col-sm-7">
+          <div class="row">
+            <div class="col-sm-4">
+              <h4 class="text-white1"><span style="border-bottom:1px solid #f60; padding-bottom:8px;">Global Ranking</span></h4>
+              <span class="big-number text-white1 thin">{{ company.rrr }}</span>
+              &nbsp;
+              <span class=""><i class="ti-arrow-down text-green1"></i> 21%</span>
+              <div>Peak: {{round (math company.rrr '*' 1.15) 2}}</div>
+              <div>Avg: {{round (math company.rrr '*' 0.85) 2}}</div>
+            </div>
+            <div class="col-sm-4">
+              <h4>Investor Ranking</h4>
+              <span class="big-number text-white1 thin">{{ company.investor }}</span>
+              &nbsp;
+              <span class=""><i class="ti-arrow-down text-green1"></i> 16%</span>
+              <div>Peak: {{round (math company.investor '*' 1.15) 2}}</div>
+              <div>Avg: {{round (math company.investor '*' 0.85) 2}}</div>
+            </div>
+            <div class="col-sm-4">
+              <h4>Corporate Ranking</h4>
+              <span class="big-number text-white1 thin">{{ company.corporate }}</span>
+              &nbsp;
+              <span class=""><i class="ti-arrow-up text-red1"></i> 9%</span>
+              <div>Peak: {{round (math company.corporate '*' 1.15) 2}}</div>
+              <div>Avg: {{round (math company.corporate '*' 0.85) 2}}</div>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="col-sm-2">
+          <button type="button" class="btn btn-white btn-round dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-top:100px;">
+            Add to My Library &nbsp;<i class="ti-angle-down"></i>
+          </button>
+          <ul class="dropdown-menu" style="background-color: #FFF;">
+            <li><a href="#" class="save-company">Save Company</a></li>
+            <li>
+              <a href="#" data-toggle="modal" data-target="#watchlist">
+                Add to Watchlist
+              </a>
+          </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+
+
+<div id="company-details">
+  <div class="container has-secondary-topbar padding-top-double padding-bottom-double">
+
+    <div class="row">
+      <div class="col-sm-7">
+        <h2>Reputational Risk Ranking &nbsp;<small>GLOBAL</small></h2>
+        <div id="mytrend" style="width: 100%; height: 500px;"></div>
+      </div>
+
+      <div class="col-sm-5">
+        <h2>RRR Heatmap</h2>
+        <div class="margin-bottom">Dates Selected: January 10 - 25, 2016</div>
+        <div id="heatmap" style="width: 100%; height: 380px;"></div>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+      <div class="col-sm-12">
+        <h2>Threads</h2>
+        <table class="table" style="margin-bottom:0px;">
+          <thead>
+            <tr>
+              <th width="1%">&nbsp;</th>
+              <th width="60%">Title</th>
+              <th width="10%" class="text-center">Stories</th>
+              <th width="10%" class="text-center">Score</th>
+              <th width="10%" class="text-center">Date Created</th>
+              <th width="10%" class="text-center">Last Updated</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each data.myNews}}
+            <tr>
+              <td width="1%"><a href="#" class="show-detail" data-id="{{ @index }}"><i class="ti-arrow-circle-right"></i></a></td>
+              <td>
+                {{ h }}
+                <div class="small text-darkgray">{{ s }}</div>
+              </td>
+              <td class="text-center">{{ i }}</td>
+              <td class="text-center">{{ r }}</td>
+              <td class="text-center">{{ c }}</td>
+              <td class="text-center">{{ d }}</td>
+            </tr>
+            <tr style="display:none;" data-detail-id="{{ @index }}">
+              <td colspan="6" style="background-color: #EEE;">
+                <div>
+                  <table class="table" style="margin-bottom:0px;">
+                    <thead>
+                      <tr>
+                        <th width="50%">Article</th>
+                        <th width="10%">Main Tag</th>
+                        <th width="10%" class="text-center">Rank</th>
+                        <th width="10%" class="text-center">Sentiment Level</th>
+                        <th width="10%" class="text-center">Publish Date</th>
+                        <th width="10%" class="text-center">Company Prominence</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {{#each ../data.myNews }}
+                      <tr>
+                        <td>
+                          {{ h }}
+                          <div class="small text-darkgray">{{ s }}</div>
+                        </td>
+                        <td>{{ t }}</td>
+                        <td class="text-center">{{round (math i '/' 10) 1}}</td>
+                        <td class="text-center">{{round (math r '/' 10) 1}}</td>
+                        <td class="text-center">{{ c }}</td>
+                        <td class="text-center">{{round (math r '/' 10) 1}}</td>
+                      </tr>
+                      {{/each}}
+                    </tbody>
+                  </table>
+                </div>
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="companyInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="ti-close"></i></span></button>
+        <h4 class="modal-title" id="myModalLabel">Company Profile</h4>
+      </div>
+      <div class="modal-body">
+        {{{ company.description }}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="watchlist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="ti-close"></i></span></button>
+        <h4 class="modal-title" id="myModalLabel">Add to Watchlist</h4>
+      </div>
+      <div class="modal-body">
+        <p>Add company to an existing watchlist</p>
+        <div class="row">
+          <div class="col-sm-8">
+            <select class="form-control">
+              <option value="">-- Existing Watchlist --</option>
+              {{#each data.watchlist}}
+              <option>{{ this }}</option>
+              {{/each}}
+    				</select>
+          </div>
+          <div class="col-sm-2">
+            <button type="button" class="btn btn-sm btn-primary btn-round" name="button">Select</button>
+          </div>
+        </div>
+
+        <p class="margin-top-half">Or create a new watchlist</p>
+
+        <div class="row">
+          <div class="col-sm-8">
+            <input type="text" class="form-control" placeholder="Watchlist name" >
+          </div>
+          <div class="col-sm-2">
+            <button type="button" class="btn btn-sm btn-primary-stroke btn-round" name="button">Create</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default-stroke btn-round" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

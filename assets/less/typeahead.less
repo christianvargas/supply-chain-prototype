@@ -1,0 +1,168 @@
+@import "colors.less";
+
+.tt-menu,
+.gist {
+  text-align: left;
+  color: @maintextcolor;
+}
+
+.typeahead,
+.tt-query,
+.tt-hint {
+  width: 320px;
+  height: 30px;
+  padding: 8px 12px;
+  outline: none;
+}
+
+.typeahead:focus {
+  border: 1px solid #CCC;
+}
+
+.tt-hint {
+  color: @maintextcolor !important;
+}
+
+.tt-menu {
+  width: 422px;
+  margin: 2px 0;
+  padding: 8px 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+          border-radius: 8px;
+  -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+          box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.tt-suggestion {
+  padding: 10px 20px;
+  color: @maintextcolor;
+  border-bottom: 1px solid @lightgray;
+}
+
+.tt-suggestion:hover {
+  cursor: pointer;
+  color: #000;
+  background-color: @lightgray;
+}
+
+.tt-suggestion.tt-cursor {
+  color: #fff;
+  background-color: #0097cf;
+
+}
+
+.tt-suggestion p {
+  margin: 0;
+}
+
+.gist {
+}
+
+/* example specific styles */
+/* ----------------------- */
+
+.empty-message {
+  padding: 10px 20px;
+  text-align: center;
+  color:#7A7E83;
+}
+
+.tt-menu {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+
+
+
+
+/***********************/
+.search-form .form-group {
+  float: right !important;
+  /*
+  transition: all 0.35s, border-radius 0s;
+  width: 32px;
+  height: 32px;
+  */
+  border-radius: 2em;
+  background-color: rgba(0,0,0,.1);
+  color: #FFF;
+
+}
+.search-form .form-group input.form-control {
+  padding-right: 20px;
+  border: 0 none;
+  background: transparent;
+  box-shadow: none;
+  display:block;
+  color: #FFF;
+}
+.search-form .form-group input.form-control::-webkit-input-placeholder {
+  display: none !important;
+  color: transparent !important;
+}
+.search-form .form-group input.form-control:-moz-placeholder {
+  /* Firefox 18- */
+  display: none !important;
+  color: transparent !important;
+}
+.search-form .form-group input.form-control::-moz-placeholder {
+  /* Firefox 19+ */
+  display: none !important;
+  color: transparent !important;
+}
+.search-form .form-group input.form-control:-ms-input-placeholder {
+  display: none !important;
+  color: transparent !important;
+}
+
+.search-form .form-group:hover input.form-control::-webkit-input-placeholder,
+.search-form .form-group.hover input.form-control::-webkit-input-placeholder {
+  display: none !important;
+  color: @maintextcolor !important;
+}
+.search-form .form-group:hover input.form-control:-moz-placeholder,
+.search-form .form-group.hover input.form-control:-moz-placeholder {
+  /* Firefox 18- */
+  display: none !important;
+  color: @maintextcolor !important;
+}
+.search-form .form-group:hover input.form-control::-moz-placeholder,
+.search-form .form-group.hover input.form-control::-moz-placeholder {
+  /* Firefox 19+ */
+  display: none !important;
+  color: @maintextcolor !important;
+}
+.search-form .form-group:hover input.form-control:-ms-input-placeholder,
+.search-form .form-group.hover input.form-control:-ms-input-placeholder {
+  display: none !important;
+  color: @maintextcolor !important;
+}
+
+
+.search-form .form-group:hover,
+.search-form .form-group.hover {
+  /* width: 100%; */
+  border-radius: 2em;
+  background-color: rgba(0,0,0,.1);
+  color: #FFF;
+}
+.search-form .form-group span.form-control-feedback {
+  position: absolute;
+  top: -1px;
+  right: -2px;
+  z-index: 2;
+  display: block;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  color: @maintextcolor;
+  left: initial;
+  /* font-size: 14px; */
+}

@@ -1,0 +1,73 @@
+<!-- Top Bar Start -->
+<div class="topbar">
+    <div class="topbar-left text-center">
+        <div class="logo">
+            <img src="./img/logo-icon.png" width=80 class="img-responsive center-block" alt="Logo">
+        </div>
+    </div>
+    <!-- Button mobile view to collapse sidebar menu -->
+    <div class="navbar navbar-default" role="navigation">
+
+        <div class="navbar-collapse2">
+            <ul class="nav navbar-nav top-navbar main-nav">
+                <li>
+                    <a href="#" class="link-home text-white1 first" style="font-family:Roboto;">
+                      SUSTAINALYTICS
+                      <span class="text-management">SUPPLY CHAIN</span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right top-navbar">
+                <li class="topbar-profile">
+                    <form action="" class="search-form" style="padding:16px 12px;">
+                        <div class="form-group has-feedback">
+                            <input type="text" class="typeahead form-control" name="search" id="search" placeholder="Search companies">
+                            <span class="ti-search form-control-feedback"></span>
+                        </div>
+                    </form>
+                </li>
+                <li class="topbar-profile text-right">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="account-name">Microsoft</span> &nbsp;
+                        <span class="user-name">Kathryn Morrison</span>
+                        <i class="fa fa-caret-down pull-right"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a data-toggle="modal" data-target="#logout-modal">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+
+    </div>
+</div>
+<!-- Top Bar End -->
+
+<!-- Modal Logout -->
+<div id="logout-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Logout Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <p class="text-center">Are you sure want to logout?</p>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary btn-logout">Logout</button>
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- Modal End -->

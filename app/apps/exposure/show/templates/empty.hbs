@@ -1,0 +1,40 @@
+<div class="main-color">
+  <div class="content-section padding-bottom-double">
+    <div class="row margin-bottom">
+      <div class="col-sm-12">
+        <h2 class="no-margin">Exposure Analysis</h2>
+      </div>
+    </div>
+
+    <div class="row margin-top">
+      <div class="col-sm-6 col-sm-offset-3">
+        <div class="text-center">
+          <h4 class="section-title">Start by Importing Your Portfolio</h4>
+          <div class="margin-top margin-bottom">
+            <i class="ti-bar-chart large-icon"></i>
+          </div>
+          <a href="/#/portfolio/import" class="btn btn-primary btn-round">Import Portfolio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content-section">
+  <div class="text-center">
+    <h3>Explore Key Issues</h3>
+  </div>
+
+  <div class="row" class="key-topics">
+    {{#each issueGroups }}
+    <div class="col-sm-4">
+      {{#each this }}
+        <div class="well">
+          <h4>{{ name }}</h4>
+          <p>{{ description }}</p>
+        </div>
+      {{/each}}
+    </div>
+    {{/each}}
+  </div>
+</div>

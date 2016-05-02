@@ -1,0 +1,35 @@
+<td class="link ">{{ name }}</td>
+<td class="link ">{{ industry.data.name }}</td>
+<td class="link ">{{ headquarterCountry.data.name }}</td>
+<td class="link text-center">{{ exposureRating.totalRisk }}</td>
+<td class="link text-center">{{ exposureRating.baselineBusinessImpact }}</td>
+<td class="link text-center">
+  {{withSign exposureRating.industryGap }}%
+  <i class="{{#is exposureRating.industryGap '>' 0}} ti-arrow-up text-red-1 {{else}} ti-arrow-down text-green-1 {{/is}}"></i>
+</td>
+<td class="text-center">
+  {{#if preparednessRating }}
+    {{ preparednessRating }}
+  {{else}}
+    {{#if currentAssessment}}
+      <a href="/#/assessments/view/{{ currentAssessment.data.id }}" class="btn btn-sm btn-round btn-management-stroke">Continue Assessment</a>
+    {{else}}
+      {{#if engagementStatus}}
+        <div class="btn-group">
+          <button type="button" class="btn btn-sm btn-round btn-management-stroke dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Begin Engagement &nbsp;<i class="ti-angle-down"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-right">
+            <li><a href="#" class="create-assessment">Enter Data</a></li>
+            <li><a href="#" class="request-assessment">Assessment Request</a></li>
+            <li><a href="#" class="review-indicators">Review Indicators</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#" class="cancel-engage">Cancel Selection</a></li>
+          </ul>
+        </div>
+      {{else}}
+        <a href="#" class="btn btn-sm btn-round btn-white engage">Select for Engagement</a>
+      {{/if}}
+    {{/if}}
+  {{/if}}
+</td>

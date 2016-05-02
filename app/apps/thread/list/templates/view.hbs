@@ -1,0 +1,36 @@
+<div class="main-color topbar-secondary">
+  <div class="container padding-top-double padding-bottom-double">
+    <h2>Threads</h2>
+  </div>
+</div>
+
+<div class="container has-secondary-topbar padding-top-double padding-bottom-double">
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table" style="margin-bottom:0px;">
+        <thead>
+          <tr>
+            <th width="30%">Title</th>
+            <th width="20%">Company</th>
+            <th width="20%">Main Tag</th>
+            <th width="10%" class="text-center">Articles</th>
+            <th width="10%" class="text-center">Start Date</th>
+            <th width="10%" class="text-center">End Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each data.myNews}}
+          <tr>
+            <td><a href="/#/thread/1">{{ h }}</a></td>
+            <td><a href="/#/company">{{ co }}</a></td>
+            <td>{{ t }}</td>
+            <td class="text-center">{{ i }}</td>
+            <td class="text-center">{{ c }}</td>
+            <td class="text-center">{{ d }}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,245 @@
+<div id="header-container" class="main-color topbar-secondary">
+  <div class="container padding-top-double padding-bottom-double">
+
+    <div class="container">
+      <div class="row margin-bottom">
+        <div class="col-sm-3">
+          <h2>{{ watchlist.n }}</h2>
+          <div>{{ watchlist.co }} Companies</div>
+          <div class="margin-top-half">
+            <div class="row">
+              <div class="col-xs-1 text-right"><i class="ti-calendar"></i></div>
+              <div class="col-xs-9">Last Updated: {{ watchlist.u }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-7">
+          <div class="row">
+            <div class="col-sm-4">
+              <h4 class="text-white1"><span style="border-bottom:1px solid #f60; padding-bottom:8px;">Global Ranking</span></h4>
+              <span class="big-number text-white1 thin">{{ watchlist.rrr }}</span>
+              &nbsp;
+              <span class=""><i class="ti-arrow-down text-green1"></i> 21%</span>
+              <div>Peak: {{round (math watchlist.rrr '*' 1.15) 2}}</div>
+              <div>Avg: {{round (math watchlist.rrr '*' 0.85) 2}}</div>
+            </div>
+            <div class="col-sm-4">
+              <h4>Investor Ranking</h4>
+              <span class="big-number text-white1 thin">{{ round (math watchlist.rrr '*' 0.91) 2}}</span>
+              &nbsp;
+              <span class=""><i class="ti-arrow-down text-green1"></i> 16%</span>
+              <div>Peak: {{round (math watchlist.rrr '*' 1.03) 2}}</div>
+              <div>Avg: {{round (math watchlist.rrr '*' 0.81) 2}}</div>
+            </div>
+            <div class="col-sm-4">
+              <h4>Corporate Ranking</h4>
+              <span class="big-number text-white1 thin">{{ round (math watchlist.rrr '*' 0.68) 2}}</span>
+              &nbsp;
+              <span class=""><i class="ti-arrow-up text-red1"></i> 9%</span>
+              <div>Peak: {{round (math watchlist.rrr '*' 0.95) 2}}</div>
+              <div>Avg: {{round (math watchlist.rrr '*' 0.65) 2}}</div>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="col-sm-2 hidden">
+          <button type="button" class="btn btn-white btn-round dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-top:100px;">
+            Add to My Library &nbsp;<i class="ti-angle-down"></i>
+          </button>
+          <ul class="dropdown-menu" style="background-color: #FFF;">
+            <li><a href="#" class="save-company">Save Company</a></li>
+            <li>
+              <a href="#" data-toggle="modal" data-target="#watchlist">
+                Add to Watchlist
+              </a>
+          </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+
+
+<div id="company-details">
+  <div class="container has-secondary-topbar padding-top-double padding-bottom-double">
+    <div class="text-center padding-bottom">
+      <a href="javascript:;;" class="btn btn-sm btn-round btn-darkgray-transparent nav-links show-companies">Companies</a>
+      &nbsp;
+      <a href="javascript:;;" class="btn btn-sm btn-round btn-darkgray-transparent nav-links show-issues">Key ESG Issues</a>
+      &nbsp;
+      <a href="javascript:;;" class="btn btn-sm btn-round btn-darkgray-transparent nav-links show-details">RRR Details</a>
+      &nbsp;
+      <a href="javascript:;;" class="btn btn-sm btn-round btn-darkgray-transparent nav-links show-stories">Media Stories</a>
+    </div>
+
+    <div id="companies" class="margin-top">
+      <div class="row">
+        <div class="col-sm-8">
+          <table class="table">
+            <thead>
+              <tr>
+                <th width="40%">Name</th>
+                <th width="20%">Sector</th>
+                <th class="text-center" width="10%">Current RRR</th>
+                <th class="text-center" width="10%">Peak RRR</th>
+                <th class="text-center" width="10%">Average RRR</th>
+                <th class="text-center" width="10%">&nbsp;</th>
+            </thead>
+            <tbody>
+              {{#each data.saved}}
+              <tr>
+                <td><a href="/#/company">{{ n }}</a></td>
+                <td>{{ s }}</td>
+                <td class="text-center">{{ rrr }}</td>
+                <td class="text-center">{{ peak }}</td>
+                <td class="text-center">{{ avg }}</td>
+                <td class="text-center">{{ c }}</td>
+                <td class="text-center">{{ u }}</td>
+                <td class="text-center"><a href="#" class="btn btn-sm btn-round btn-darkgray-stroke">Remove</a></td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+        <div class="col-sm-4">
+          <div class="well bg-lightgray">
+            <h4>Quick Add</h4>
+            <input type="text" class="form-control" placeholder="Company Name" />
+            <div class="text-right margin-top-half">
+              <a class="btn btn-default btn-round">Add Company</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="issues" class="margin-top">
+      <div class="row">
+        <div class="col-sm-8">
+          <table class="table">
+            <thead>
+              <tr>
+                <th width="30%">Key ESG Issue</th>
+                <th class="text-center" width="15%">Occurences</th>
+                <th class="text-center" width="15%">First</th>
+                <th class="text-center" width="15%">Latest</th>
+                <th class="text-center" width="15%">Weight</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each data.issues}}
+              <tr>
+                <td>{{ n }}</td>
+                <td class="text-center">{{ c }}</td>
+                <td class="text-center">{{ f }}</td>
+                <td class="text-center">{{ l }}</td>
+                <td class="text-center">{{ w }}</td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+        <div class="col-sm-4 text-center" style="background:#EEE; padding:15px;">
+          <img src="/img/cloud.png" class="img-responsive" />
+        </div>
+      </div>
+    </div>
+
+    <div id="details" class="margin-top">
+      <div class="row">
+        <div class="col-sm-7">
+          <h2>Reputational Risk Ranking &nbsp;<small>GLOBAL</small></h2>
+          <div id="mytrend" style="width: 100%; height: 400px;"></div>
+        </div>
+
+        <div class="col-sm-5">
+          <h2>RRR Heatmap</h2>
+          <div class="margin-bottom">Dates Selected: January 10 - 25, 2016</div>
+          <div id="heatmap" style="width: 100%; height: 380px;"></div>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>Threads</h2>
+          <table class="table" style="margin-bottom:0px;">
+            <thead>
+              <tr>
+                <th width="1%">&nbsp;</th>
+                <th width="20%">Company</th>
+                <th width="40%">Title</th>
+                <th width="10%" class="text-center">Stories</th>
+                <th width="10%" class="text-center">Score</th>
+                <th width="10%" class="text-center">Date Created</th>
+                <th width="10%" class="text-center">Last Updated</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each data.myNews}}
+              <tr>
+                <td width="1%"><a href="#" class="show-detail" data-id="{{ @index }}"><i class="ti-arrow-circle-right"></i></a></td>
+                <td>Lyft</td>
+                <td>
+                  {{ h }}
+                  <div class="small text-darkgray">{{ s }}</div>
+                </td>
+                <td class="text-center">{{ i }}</td>
+                <td class="text-center">{{ r }}</td>
+                <td class="text-center">{{ c }}</td>
+                <td class="text-center">{{ d }}</td>
+              </tr>
+              <tr style="display:none;" data-detail-id="{{ @index }}">
+                <td colspan="7" style="background-color: #EEE;">
+                  <div>
+
+                    <table class="table" style="margin-bottom:0px;">
+                      <thead>
+                        <tr>
+                          <th width="60%">Article</th>
+                          <th width="10%" class="text-center">Rank</th>
+                          <th width="10%" class="text-center">Sentiment Level</th>
+                          <th width="10%" class="text-center">Publish Date</th>
+                          <th width="10%" class="text-center">Company Prominence</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each ../data.myNews }}
+                        <tr>
+                          <td>
+                            {{ h }}
+                            <div class="small text-darkgray">{{ s }}</div>
+                          </td>
+                          <td class="text-center">{{round (math i '/' 10) 1}}</td>
+                          <td class="text-center">{{round (math r '/' 10) 1}}</td>
+                          <td class="text-center">{{ c }}</td>
+                          <td class="text-center">{{round (math r '/' 10) 1}}</td>
+                        </tr>
+                        {{/each}}
+                      </tbody>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="stories">
+
+    </div>
+  </div>
+</div>

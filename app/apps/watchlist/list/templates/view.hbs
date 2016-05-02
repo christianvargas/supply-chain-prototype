@@ -1,0 +1,43 @@
+<div class="main-color topbar-secondary">
+  <div class="container padding-top-double padding-bottom-double">
+    <h2 class="pull-left">Watchlists</h2>
+    <div class="pull-right">
+      <a class="btn btn-sm btn-white btn-round">Create New</a>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+
+<div class="container has-secondary-topbar padding-top-double padding-bottom-double">
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th width="30%">Name</th>
+            <th class="text-center" width="8%">Companies</th>
+            <th class="text-center" width="8%">Current RRR</th>
+            <th class="text-center" width="8%">Peak RRR</th>
+            <th class="text-center" width="8%">Average RRR</th>
+            <th class="text-center" width="15%">Date Created</th>
+            <th class="text-center" width="15%">Last Updated</th>
+            <th class="text-center" width="8%">&nbsp;</th>
+        </thead>
+        <tbody>
+          {{#each data.watchlist}}
+          <tr>
+            <td><a href="/#/watchlist/1">{{ n }}</a></td>
+            <td class="text-center">{{ co }}</td>
+            <td class="text-center">{{ rrr }}</td>
+            <td class="text-center">{{ peak }}</td>
+            <td class="text-center">{{ avg }}</td>
+            <td class="text-center">{{ c }}</td>
+            <td class="text-center">{{ u }}</td>
+            <td class="text-center"><a href="#" class="btn btn-sm btn-round btn-darkgray-stroke">Delete</a></td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

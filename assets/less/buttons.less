@@ -1,0 +1,145 @@
+@import "colors.less";
+
+.btn {
+	border-radius: 2px;
+  text-transform: uppercase;
+  font-family: "Montserrat";
+  font-size: 12px;
+  line-height: 1em;
+  padding: 11px 14px;
+}
+
+.list-group-item:first-child {
+	border-top-right-radius: 0px;
+	border-top-left-radius: 0px;
+}
+
+.list-group-item:last-child {
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+/* BUTTONS */
+.dropdown-toggle.btn-sm{
+	padding-right:6px;
+}
+
+.dropdown-toggle.btn-xs{
+	padding-right:3px;
+}
+
+.btn-default {
+    background-color: #ABB7B7;
+    border-color: #ABB7B7;
+    color: #fff;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+    background-color: #98A3A3;
+    border-color: #98A3A3;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: @primary;
+    border-color: @primary;
+    color: #FFFFFF;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+    background-color: @primary;
+    border-color: @primary;
+    color: #FFFFFF;
+}
+
+.btn-success {
+    background-color: #68C39F;
+    border-color: #68C39F;
+    color: #FFFFFF;
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success {
+    background-color: #5CAD8D;
+    border-color: #5CAD8D;
+    color: #FFFFFF;
+}
+
+.btn-info {
+    background-color: #65BBD6;
+    border-color: #65BBD6;
+    color: #FFFFFF;
+}
+
+.btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open .dropdown-toggle.btn-info {
+    background-color: #5BA9C2;
+    border-color: #5BA9C2;
+    color: #FFFFFF;
+}
+
+.btn-warning {
+    background-color: #FFC052;
+    border-color: #FFC052;
+    color: #FFFFFF;
+}
+
+.btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active, .open .dropdown-toggle.btn-warning {
+    background-color: #F5B84F;
+    border-color: #F5B84F;
+    color: #FFFFFF;
+}
+
+.btn-danger {
+    background-color: #E15554;
+    border-color: #E15554;
+    color: #FFFFFF;
+}
+
+.btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .open .dropdown-toggle.btn-danger {
+    background-color: #C74B4A;
+    border-color: #C74B4A;
+    color: #FFFFFF;
+}
+
+.btn-transparent {
+  background-color: transparent;
+}
+
+.btn-white, .btn-white:hover, .btn-white:focus {
+	background-color: transparent;
+	color: @maintextcolor;
+  border: 1px solid @maintextcolor;
+
+  &.active, &.active:hover {
+    border: 1px solid @maintextcolor;
+  }
+}
+
+.btn-group-sm>.btn, .btn-sm {
+  padding: 8px 14px;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.btn-group-xs >.btn, .btn-xs  {
+  padding: 1px 10px;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.btn-round {
+  border-radius: 2em;
+}
+
+.btn-group > .btn-round:first-child:not(:last-child) {
+  border-top-left-radius: 2em;
+  border-bottom-left-radius: 2em;
+}
+.btn-group > .btn-round:last-child:not(:first-child) {
+  border-top-right-radius: 2em;
+  border-bottom-right-radius: 2em;
+}
+
+.btn-group.open {
+	background: #EEE;
+}
