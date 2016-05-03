@@ -24,6 +24,7 @@
     "highlight": "^0.2.4",
     "jquery-file-download": "^1.4.5",
     "jquery.cookie": "^1.4.1",
+    "less": "^2.3.1",
     "tiny-lr": "0.0.7"
   },
   "engines": {

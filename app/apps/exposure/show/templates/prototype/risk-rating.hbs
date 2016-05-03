@@ -1,62 +1,64 @@
 <div class="main-color hidden-xs padding-top-double padding-bottom-double">
-    <div class="container">
-        <div class="margin-bottom-double">
-            <div class="pull-left">
-                <h2 class="title">Dashboard</h2>
-                <h2 class="title chart-title text-darkgray">Direct Suppliers</h2>
+  <div class="container">
+    <div class="margin-bottom-double">
+      <div class="pull-left">
+        <h2 class="title">Dashboard</h2>
+        <h2 class="title chart-title text-darkgray">Direct Suppliers</h2>
 
-            </div>
-            <div class="pull-right">
-                <div class="btn-toolbar">
-                    <button type="button" data-exposure-type="portfolio" class="btn btn-round btn-transparent active">ESG Risk Rating</button>
-                    <button type="button" data-exposure-type="industry" class="btn btn-round btn-transparent">Sector Exposure</button>
-                    <button type="button" data-exposure-type="country" class="btn btn-round btn-transparent">Country Exposure</button>
-                    <button type="button" data-exposure-type="country" class="btn btn-round btn-transparent">Controversies</button>
-                </div>
-            </div>
-            <div class="clearfix"></div>
+      </div>
+      <div class="pull-right">
+        <div class="btn-toolbar">
+          <button type="button" data-exposure-type="risk-rating" class="btn btn-round btn-transparent active">ESG Risk Rating</button>
+          <button type="button" data-exposure-type="sub-industry" class="btn btn-round btn-transparent">Sub-Industry Exposure</button>
+          <button type="button" data-exposure-type="country" class="btn btn-round btn-transparent">Country Exposure</button>
+          <button type="button" data-exposure-type="country" class="btn btn-round btn-transparent">Controversies</button>
         </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
 
-        <div id="exposure-chart">
+    <div id="exposure-chart">
 
-            <div id="risk-chart"></div>
+      <center>
+        <div id="heatmap" style="width:800px; height:600px;"></div>
+      </center>
 
-            <div class="hidden">
-                <div class="padding-top-double">
-                    <div class="pull-left">
-                        <div class="company-risk-legend">
-                            <span class="legend">
+      <div class="hidden">
+        <div class="padding-top-double">
+          <div class="pull-left">
+            <div class="company-risk-legend">
+              <span class="legend">
                               <i class="fa fa-square text-adjustedBaseline"></i>&nbsp; Company Risk
                             </span> &nbsp;&nbsp;&nbsp;
-                            <span class="legend">
+              <span class="legend">
                               <i class="fa fa-square text-management"></i>&nbsp; ESG Management Score
                             </span> &nbsp;&nbsp;&nbsp;
-                            <span class="legend">
+              <span class="legend">
                               <i class="fa fa-circle"></i>&nbsp; Market Risk
                             </span>
-                        </div>
-                        <div class="risk-premium-legend hidden">
-                            <span class="legend">
+            </div>
+            <div class="risk-premium-legend hidden">
+              <span class="legend">
                               <i class="fa fa-square text-red-1"></i>&nbsp; Above Market
                             </span> &nbsp;&nbsp;&nbsp;
-                            <span class="legend">
+              <span class="legend">
                               <i class="fa fa-square text-green-1"></i>&nbsp; Below Market
                             </span>
-                        </div>
-                    </div>
-
-                    <div class="pull-right">
-                        <a href="#" class="legend excel-export"><i class="ti-share"></i>&nbsp; Export Data</a> &nbsp;&nbsp;&nbsp;
-                        <a href="#" class="legend chart-export"><i class="ti-download"></i>&nbsp; Download Chart</a>
-                    </div>
-
-                    <div class="clearfix"></div>
-                </div>
-
-                <p class="padding-top-double">From an investment perspective, ESG risk is driven by the inherent exposure of a company to ESG issues and a company’s approach to the management of those issues. The chart above illustrates the ESG risk exposure facing portfolio companies
-                    and how prepared they are to manage risks.</p>
-                <p>To view more information about company ESG risk exposure click on any company within the bar chart or table below.</p>
             </div>
+          </div>
+
+          <div class="pull-right">
+            <a href="#" class="legend excel-export"><i class="ti-share"></i>&nbsp; Export Data</a> &nbsp;&nbsp;&nbsp;
+            <a href="#" class="legend chart-export"><i class="ti-download"></i>&nbsp; Download Chart</a>
+          </div>
+
+          <div class="clearfix"></div>
         </div>
+
+        <p class="padding-top-double">From an investment perspective, ESG risk is driven by the inherent exposure of a company to ESG issues and a company’s approach to the management of those issues. The chart above illustrates the ESG risk exposure facing portfolio companies and
+          how prepared they are to manage risks.</p>
+        <p>To view more information about company ESG risk exposure click on any company within the bar chart or table below.</p>
+      </div>
     </div>
+  </div>
 </div>
