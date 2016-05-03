@@ -88,7 +88,7 @@ App.on("start", function() {
 
       // redirect home
       if (App.getCurrentRoute() === "") {
-        Bus.commands.execute("dashboard:show");
+        Bus.commands.execute("exposure:show:portfolio");
       }
   }
 });
@@ -103,7 +103,7 @@ Bus.reqres.setHandler('sidebar_region', function() {
   return App.regions.sidebar;
 });
 Bus.commands.setHandler('redirect:home', function() {
-  Bus.commands.execute("dashboard:show");
+  Bus.commands.execute("exposure:show:portfolio");
 });
 
 /********** EXPORTS **********/

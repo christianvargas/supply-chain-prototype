@@ -1,64 +1,315 @@
 <div class="main-color hidden-xs padding-top-double padding-bottom-double">
-  <div class="container">
-    <div class="margin-bottom-double">
-      <div class="pull-left">
-        <h2 class="title">Dashboard</h2>
-        <h2 class="title chart-title text-darkgray">Direct Suppliers</h2>
+    <div class="container">
+        <div class="margin-bottom-double">
+            <div class="pull-left">
+                <h2 class="title">Dashboard</h2>
+                <h2 class="title chart-title text-darkgray">Direct Suppliers</h2>
 
-      </div>
-      <div class="pull-right">
-        <div class="btn-toolbar">
-          <button type="button" data-exposure-type="risk-rating" class="btn btn-round btn-transparent active">ESG Risk Rating</button>
-          <button type="button" data-exposure-type="sub-industry" class="btn btn-round btn-transparent">Sub-Industry Exposure</button>
-          <button type="button" data-exposure-type="country" class="btn btn-round btn-transparent">Country Exposure</button>
-          <button type="button" data-exposure-type="country" class="btn btn-round btn-transparent">Controversies</button>
+            </div>
+            <div class="pull-right">
+                <div class="btn-toolbar">
+                    <button type="button" data-exposure-type="risk-rating" class="btn btn-round btn-transparent active">ESG Risk Rating</button>
+                    <button type="button" data-exposure-type="sub-industry" class="btn btn-round btn-transparent">Sub-Industry Exposure</button>
+                    <button type="button" data-exposure-type="country" class="btn btn-round btn-transparent">Country Exposure</button>
+                    <button type="button" data-exposure-type="country" class="btn btn-round btn-transparent">Controversies</button>
+                </div>
+            </div>
+            <div class="clearfix"></div>
         </div>
-      </div>
-      <div class="clearfix"></div>
-    </div>
 
-    <div id="exposure-chart">
+        <div id="exposure-chart">
+          <div style="background:rgba(0,0,0,0.15); padding: 30px;">
+            <center>
+                <div id="heatmap" style="width:800px; height:500px;"></div>
+            </center>
+          </div>
 
-      <center>
-        <div id="heatmap" style="width:800px; height:600px;"></div>
-      </center>
-
-      <div class="hidden">
-        <div class="padding-top-double">
-          <div class="pull-left">
-            <div class="company-risk-legend">
-              <span class="legend">
+            <div class="hidden">
+                <div class="padding-top-double">
+                    <div class="pull-left">
+                        <div class="company-risk-legend">
+                            <span class="legend">
                               <i class="fa fa-square text-adjustedBaseline"></i>&nbsp; Company Risk
                             </span> &nbsp;&nbsp;&nbsp;
-              <span class="legend">
+                            <span class="legend">
                               <i class="fa fa-square text-management"></i>&nbsp; ESG Management Score
                             </span> &nbsp;&nbsp;&nbsp;
-              <span class="legend">
+                            <span class="legend">
                               <i class="fa fa-circle"></i>&nbsp; Market Risk
                             </span>
-            </div>
-            <div class="risk-premium-legend hidden">
-              <span class="legend">
-                              <i class="fa fa-square text-red-1"></i>&nbsp; Above Market
+                        </div>
+                        <div class="risk-premium-legend hidden">
+                            <span class="legend">
+                              <i class="fa fa-square text-red1"></i>&nbsp; Above Market
                             </span> &nbsp;&nbsp;&nbsp;
-              <span class="legend">
-                              <i class="fa fa-square text-green-1"></i>&nbsp; Below Market
+                            <span class="legend">
+                              <i class="fa fa-square text-green1"></i>&nbsp; Below Market
                             </span>
+                        </div>
+                    </div>
+
+                    <div class="pull-right">
+                        <a href="#" class="legend excel-export"><i class="ti-share"></i>&nbsp; Export Data</a> &nbsp;&nbsp;&nbsp;
+                        <a href="#" class="legend chart-export"><i class="ti-download"></i>&nbsp; Download Chart</a>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+
+                <p class="padding-top-double">From an investment perspective, ESG risk is driven by the inherent exposure of a company to ESG issues and a company’s approach to the management of those issues. The chart above illustrates the ESG risk exposure facing portfolio companies
+                    and how prepared they are to manage risks.</p>
+                <p>To view more information about company ESG risk exposure click on any company within the bar chart or table below.</p>
             </div>
-          </div>
-
-          <div class="pull-right">
-            <a href="#" class="legend excel-export"><i class="ti-share"></i>&nbsp; Export Data</a> &nbsp;&nbsp;&nbsp;
-            <a href="#" class="legend chart-export"><i class="ti-download"></i>&nbsp; Download Chart</a>
-          </div>
-
-          <div class="clearfix"></div>
         </div>
-
-        <p class="padding-top-double">From an investment perspective, ESG risk is driven by the inherent exposure of a company to ESG issues and a company’s approach to the management of those issues. The chart above illustrates the ESG risk exposure facing portfolio companies and
-          how prepared they are to manage risks.</p>
-        <p>To view more information about company ESG risk exposure click on any company within the bar chart or table below.</p>
-      </div>
     </div>
-  </div>
+</div>
+
+<div class="container padding-top-double">
+    <div id="exposure-list">
+        <div>
+            <div class="table-responsive">
+                <table class="table table-hover company-table" id="companyListTable">
+                    <thead>
+                        <tr>
+                            <th data-sort="name">Name</th>
+                            <th data-sort="industry">Industry</th>
+                            <th data-sort="headquarterCountry">Domicile</th>
+                            <th data-sort="totalRisk" class="text-center">
+                                <span tabindex="0" class="popover-text" role="button" data-toggle="popover" data-trigger="focus" title="Company Risk" data-content="Represents the potential business impact and reputational risk resulting from mismanaged environmental, social and governance (ESG) issues. This value takes into account the country, or countries, in which a company operates as well as company-specific incidents.&nbsp;Higher Company Risk signifies a higher likelihood of ESG-related challenges. Assessed on a scale of 110.">
+                                  Company<br>Risk
+                                </span>
+                            </th>
+                            <th data-sort="adjustedBaselineImpact" class="text-center">
+                                <span tabindex="0" class="popover-text" role="button" data-toggle="popover" data-trigger="focus" title="Market Risk" data-content="Represents the inherent risk or degree of impact that material ESG issues may have on a company operating within an industry, regardless of the location of operations.&nbsp; Assessed on a scale of 110.">
+                                  Market<br>Risk
+                                </span>
+                            </th>
+                            <th data-sort="industryGap" class="text-center">
+                                <span tabindex="0" class="popover-text" role="button" data-toggle="popover" data-trigger="focus" title="Risk Premium" data-content="The Risk Premium represents the percent difference between the Market and Company Risks.">
+                                  Risk<br>Premium
+                                </span>
+                            </th>
+                            <th data-sort="preparednessRating" class="text-center">
+                                <span tabindex="0" class="popover-text" role="button" data-toggle="popover" data-trigger="focus" data-placement="left" title="ESG Management Performance" data-content="Represents how prepared a company is to manage ESG risks effectively, based on the extent of relevant policies, programmes and management systems. Scored on a scale of 110.">
+                      						ESG Management<br>Score
+                      	        </span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="link ">Invacare Corp.</td>
+                            <td class="link ">Health Care Equipment</td>
+                            <td class="link ">United States</td>
+                            <td class="link text-center">4.27</td>
+                            <td class="link text-center">3.29</td>
+                            <td class="link text-center">
+                                +30%
+                                <i class=" ti-arrow-up text-red1 "></i>
+                            </td>
+                            <td class="text-center">
+                                4
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="link ">Outset Medical, Inc.</td>
+                            <td class="link ">Health Care Equipment</td>
+                            <td class="link ">United States</td>
+                            <td class="link text-center">3.9</td>
+                            <td class="link text-center">3.29</td>
+                            <td class="link text-center">
+                                +19%
+                                <i class=" ti-arrow-up text-red1 "></i>
+                            </td>
+                            <td class="text-center">
+                                4.75
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="link ">Stryker Corporation</td>
+                            <td class="link ">Health Care Equipment</td>
+                            <td class="link ">United States</td>
+                            <td class="link text-center">3.9</td>
+                            <td class="link text-center">3.29</td>
+                            <td class="link text-center">
+                                +19%
+                                <i class=" ti-arrow-up text-red1 "></i>
+                            </td>
+                            <td class="text-center">
+                                <a href="/#/assessments/view/34" class="btn btn-sm btn-round btn-management-stroke">Continue Assessment</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="link ">CrowdStrike, Inc.</td>
+                            <td class="link ">Internet Software &amp; Services</td>
+                            <td class="link ">United States</td>
+                            <td class="link text-center">4.01</td>
+                            <td class="link text-center">3.41</td>
+                            <td class="link text-center">
+                                +18%
+                                <i class=" ti-arrow-up text-red1 "></i>
+                            </td>
+                            <td class="text-center">
+                                5.36
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="link ">RehabCare Group, Inc.</td>
+                            <td class="link ">Health Care Services</td>
+                            <td class="link ">United States</td>
+                            <td class="link text-center">4.24</td>
+                            <td class="link text-center">3.65</td>
+                            <td class="link text-center">
+                                +16%
+                                <i class=" ti-arrow-up text-red1 "></i>
+                            </td>
+                            <td class="text-center">
+                                <a href="/#/assessments/view/30" class="btn btn-sm btn-round btn-management-stroke">Continue Assessment</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="link ">Mylan, Inc.</td>
+                            <td class="link ">Biotechnology</td>
+                            <td class="link ">United States</td>
+                            <td class="link text-center">4.56</td>
+                            <td class="link text-center">4.02</td>
+                            <td class="link text-center">
+                                +13%
+                                <i class=" ti-arrow-up text-red1 "></i>
+                            </td>
+                            <td class="text-center">
+                                <a href="/#/assessments/view/28" class="btn btn-sm btn-round btn-management-stroke">Continue Assessment</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="link ">Avalara Inc</td>
+                            <td class="link ">Application Software</td>
+                            <td class="link ">United States</td>
+                            <td class="link text-center">3.38</td>
+                            <td class="link text-center">3.05</td>
+                            <td class="link text-center">
+                                +11%
+                                <i class=" ti-arrow-up text-red1 "></i>
+                            </td>
+                            <td class="text-center">
+                                <a href="#" class="btn btn-sm btn-round btn-white engage">Select for Engagement</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="link ">Nimble Storage</td>
+                            <td class="link ">Data Processing &amp; Outsourced Services</td>
+                            <td class="link ">United States</td>
+                            <td class="link text-center">3.38</td>
+                            <td class="link text-center">3.05</td>
+                            <td class="link text-center">
+                                +11%
+                                <i class=" ti-arrow-up text-red1 "></i>
+                            </td>
+                            <td class="text-center">
+                                <a href="/#/assessments/view/36" class="btn btn-sm btn-round btn-management-stroke">Continue Assessment</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="link ">Sempra Energy</td>
+                            <td class="link ">Oil &amp; Gas Storage &amp; Transportation</td>
+                            <td class="link ">United States</td>
+                            <td class="link text-center">5.42</td>
+                            <td class="link text-center">5.22</td>
+                            <td class="link text-center">
+                                +4%
+                                <i class=" ti-arrow-up text-red1 "></i>
+                            </td>
+                            <td class="text-center">
+                                <a href="#" class="btn btn-sm btn-round btn-white engage">Select for Engagement</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="link ">Hawkwood Energy LLC</td>
+                            <td class="link ">Oil &amp; Gas Drilling</td>
+                            <td class="link ">United States</td>
+                            <td class="link text-center">4.34</td>
+                            <td class="link text-center">4.26</td>
+                            <td class="link text-center">
+                                +2%
+                                <i class=" ti-arrow-up text-red1 "></i>
+                            </td>
+                            <td class="text-center">
+                                <a href="/#/assessments/view/27" class="btn btn-sm btn-round btn-management-stroke">Continue Assessment</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="link ">DBRS, Ltd.</td>
+                            <td class="link ">Other Diversified Financial Services</td>
+                            <td class="link ">Canada</td>
+                            <td class="link text-center">5.53</td>
+                            <td class="link text-center">5.58</td>
+                            <td class="link text-center">
+                                1%
+                                <i class=" ti-arrow-down text-green1 "></i>
+                            </td>
+                            <td class="text-center">
+                                <a href="/#/assessments/view/23" class="btn btn-sm btn-round btn-management-stroke">Continue Assessment</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="link ">Telus</td>
+                            <td class="link ">Integrated Telecommunication Services</td>
+                            <td class="link ">United States</td>
+                            <td class="link text-center">4.8</td>
+                            <td class="link text-center">4.86</td>
+                            <td class="link text-center">
+                                1%
+                                <i class=" ti-arrow-down text-green1 "></i>
+                            </td>
+                            <td class="text-center">
+                                <a href="#" class="btn btn-sm btn-round btn-white engage">Select for Engagement</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="link ">Endurance Energy</td>
+                            <td class="link ">Oil &amp; Gas Exploration &amp; Production</td>
+                            <td class="link ">Canada</td>
+                            <td class="link text-center">4.95</td>
+                            <td class="link text-center">5.34</td>
+                            <td class="link text-center">
+                                -7%
+                                <i class=" ti-arrow-down text-green1 "></i>
+                            </td>
+                            <td class="text-center">
+                                <a href="#" class="btn btn-sm btn-round btn-white engage">Select for Engagement</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="link ">Black Swan Energy, Ltd.</td>
+                            <td class="link ">Oil &amp; Gas Exploration &amp; Production</td>
+                            <td class="link ">Canada</td>
+                            <td class="link text-center">4.91</td>
+                            <td class="link text-center">5.34</td>
+                            <td class="link text-center">
+                                -8%
+                                <i class=" ti-arrow-down text-green1 "></i>
+                            </td>
+                            <td class="text-center">
+                                <a href="/#/assessments/view/31" class="btn btn-sm btn-round btn-management-stroke">Continue Assessment</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="link ">Centerra Gold, Inc.</td>
+                            <td class="link ">Diversified Metals &amp; Mining</td>
+                            <td class="link ">Canada</td>
+                            <td class="link text-center">5.9</td>
+                            <td class="link text-center">6.55</td>
+                            <td class="link text-center">
+                                10%
+                                <i class=" ti-arrow-down text-green1 "></i>
+                            </td>
+                            <td class="text-center">
+                                <a href="/#/assessments/view/29" class="btn btn-sm btn-round btn-management-stroke">Continue Assessment</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
