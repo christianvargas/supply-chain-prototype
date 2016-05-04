@@ -5,38 +5,16 @@
           <div class="btn-toolbar">
             <button type="button" data-exposure-type="risk-rating" class="btn btn-round btn-transparent">ESG Risk Rating</button>
             <button type="button" data-exposure-type="sub-industry" class="btn btn-round btn-transparent">Sub-Industry Exposure</button>
-            <button type="button" data-exposure-type="country" class="btn btn-round btn-transparent active">Country Exposure</button>
-            <button type="button" data-exposure-type="issues" class="btn btn-round btn-transparent">ESG Issue Exposure</button>
+            <button type="button" data-exposure-type="country" class="btn btn-round btn-transparent">Country Exposure</button>
+            <button type="button" data-exposure-type="issues" class="btn btn-round btn-transparent issues">ESG Issue Exposure</button>
             <button type="button" data-exposure-type="controversies" class="btn btn-round btn-transparent">Controversies</button>
           </div>
       </div>
     </div>
 
-    <div id="country-chart"></div>
-
-    <div class="padding-top-double">
-      <div class="pull-left">
-        <span class="legend">
-          <i class="fa fa-square text-adjustedBaseline"></i>&nbsp; Company Risk
-        </span> &nbsp;&nbsp;&nbsp;
-
-        <span class="legend">
-          <i class="fa fa-square" style="color: #4D73A2;"></i>&nbsp; Country Risk
-        </span>
-      </div>
-
-      <div class="pull-right">
-        <a href="#" class="legend excel-export"><i class="ti-share"></i>&nbsp; Export Data</a> &nbsp;&nbsp;&nbsp;
-        <a href="#" class="legend chart-export"><i class="ti-download"></i>&nbsp; Download Chart</a>
-      </div>
-      <div class="clearfix"></div>
-    </div>
-
-    <p class="padding-top-double">The map above illustrates ESG risk exposure by country. The size of the circle is determined by the combined ESG exposure for companies within the country. A larger diameter represents higher geographic risk exposure. Hover over the chart to view
-      additional details.</p>
+    <div id="issues-chart"></div>
   </div>
 </div>
-
 
 <div class="container padding-top-double">
   <div id="exposure-list">
@@ -56,7 +34,7 @@
 
           <tbody>
             <tr>
-              <td>United Kingdom</td>
+              <td>Emissions, Effluents and Waste</td>
               <td class="text-center">52</td>
               <td class="text-center">3.15</td>
               <td class="text-center">8.10</td>
@@ -79,7 +57,7 @@
               </td>
             </tr>
             <tr>
-              <td>United States</td>
+              <td>Health and Safety</td>
               <td class="text-center">91</td>
               <td class="text-center">2.15</td>
               <td class="text-center">9.73</td>
@@ -102,7 +80,7 @@
               </td>
             </tr>
             <tr>
-              <td>France</td>
+              <td>Human Rights</td>
               <td class="text-center">38</td>
               <td class="text-center">3.34</td>
               <td class="text-center">9.67</td>
@@ -125,7 +103,76 @@
               </td>
             </tr>
             <tr>
-              <td>Spain</td>
+              <td>Land Use and Biodiversity</td>
+              <td class="text-center">352</td>
+              <td class="text-center">3.73</td>
+              <td class="text-center">8.37</td>
+              <td class="text-center">
+                <div class="row">
+                  <div class="col-sm-3 text-right" style="padding-right:0px;">
+                    5.53
+                  </div>
+                  <div class="col-sm-9">
+                    <div class="progress progress-sm">
+                      <div class="progress-bar progress-bar-darkgray totalExposure" role="progressbar" aria-valuenow="55.300000000000004" aria-valuemin="0" aria-valuemax="100" style="width: 55.300000000000004%;">
+                        <span class="sr-only">55.300000000000004% Complete</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center">
+                <i class=" ti-arrow-up text-red1 "></i> &nbsp; +0.05
+              </td>
+            </tr>
+            <tr>
+              <td>Community Relations</td>
+              <td class="text-center">352</td>
+              <td class="text-center">3.73</td>
+              <td class="text-center">8.37</td>
+              <td class="text-center">
+                <div class="row">
+                  <div class="col-sm-3 text-right" style="padding-right:0px;">
+                    5.53
+                  </div>
+                  <div class="col-sm-9">
+                    <div class="progress progress-sm">
+                      <div class="progress-bar progress-bar-darkgray totalExposure" role="progressbar" aria-valuenow="55.300000000000004" aria-valuemin="0" aria-valuemax="100" style="width: 55.300000000000004%;">
+                        <span class="sr-only">55.300000000000004% Complete</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center">
+                <i class=" ti-arrow-up text-red1 "></i> &nbsp; +0.05
+              </td>
+            </tr>
+            <tr>
+              <td>Business Ethics</td>
+              <td class="text-center">352</td>
+              <td class="text-center">3.73</td>
+              <td class="text-center">8.37</td>
+              <td class="text-center">
+                <div class="row">
+                  <div class="col-sm-3 text-right" style="padding-right:0px;">
+                    5.53
+                  </div>
+                  <div class="col-sm-9">
+                    <div class="progress progress-sm">
+                      <div class="progress-bar progress-bar-darkgray totalExposure" role="progressbar" aria-valuenow="55.300000000000004" aria-valuemin="0" aria-valuemax="100" style="width: 55.300000000000004%;">
+                        <span class="sr-only">55.300000000000004% Complete</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center">
+                <i class=" ti-arrow-up text-red1 "></i> &nbsp; +0.05
+              </td>
+            </tr>
+            <tr>
+              <td>Water Use</td>
               <td class="text-center">352</td>
               <td class="text-center">3.73</td>
               <td class="text-center">8.37</td>

@@ -37,7 +37,11 @@ var PrototypeRiskView = Marionette.ItemView.extend({
         break;
 
       case 'country':
-      this.loadCountry();
+        this.loadCountry();
+        break;
+
+      case 'issues':
+        this.loadIssues();
         break;
     }
   },
@@ -228,9 +232,9 @@ var PrototypeRiskView = Marionette.ItemView.extend({
       "name": "United Kingdom",
       "z": "6.20",
       "color": "#FF931E",
-      "minExposure": "2.62",
-      "maxExposure": "3.58",
-      "avgExposure": "3.10"
+      "minExposure": "5.15",
+      "maxExposure": "8.10",
+      "avgExposure": "6.20"
     }, {
       "code": "SAU",
       "name": "Saudi Arabia",
@@ -280,383 +284,221 @@ var PrototypeRiskView = Marionette.ItemView.extend({
       "maxExposure": "3.27",
       "avgExposure": "3.27"
     }];
-    // Initiate the chart
-    $('#country-chart').highcharts('Map', {
-      chart: {
-        backgroundColor: 'rgba(255, 255, 255, 0.001)',
-        height: 360
-      },
 
-      title: {
-        text: null
-      },
 
-      credits: {
-        enabled: false,
-        text: 'Sustainalytics.com',
-        href: 'http://www.sustainalytics.com'
-      },
+    $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=world-population-density.json&callback=?', function (mapData){
 
-      mapNavigation: {
-        enabled: true,
-        enableDoubleClickZoomTo: true,
-        enableMouseWheelZoom: false,
-        buttonOptions: {
-          verticalAlign: 'bottom'
-        }
-      },
-
-      navigation: {
-        buttonOptions: {
-          height: 10,
-          width: 12,
-          symbolFill: 'rgba(255, 255, 255, 0.001)'
-        }
-      },
-
-      legend: {
-        enabled: false,
-        align: 'right',
-        verticalAlign: 'bottom',
-        layout: 'vertical',
-        padding: 3,
-        itemMarginTop: 5,
-        itemMarginBottom: 5,
-        itemStyle: {
-          color: '#94989F',
-          fontSize: 10
+      // Initiate the chart
+      $('#country-chart').highcharts('Map', {
+        chart: {
+          backgroundColor: 'rgba(255, 255, 255, 0.001)',
+          height: 360
         },
-        reversed: false
-      },
 
-      plotOptions: {
-        map: {
-          nullColor: 'rgba(255, 255, 255, 0.15)',
-          borderColor: '#3C444E',
-          borderWidth: 0.5
-        }
-      },
-      tooltip: {
-        shared: true,
-        formatter: function(){
-          var display = '<strong>' + this.key + '</strong><br />' +
-                        'Total Exposure: ' + parseFloat(this.point.z).toFixed(2) + '<br />' +
-                        'Lowest: ' + parseFloat(this.point.minExposure).toFixed(2) + '<br />' +
-                        'Highest: ' + parseFloat(this.point.maxExposure).toFixed(2) + '<br />' +
-                        'Average: ' + parseFloat(this.point.avgExposure).toFixed(2);
-          return display;
-        }
-      },
-      series: [{
-        name: 'Countries',
-        mapData: Highcharts.maps['custom/world-highres3'],
-        enableMouseTracking: false,
-        showInLegend: false
-      }, {
-        name: 'Total Exposure',
-        type: 'mapbubble',
-        // data: data,
-        mapData: Highcharts.maps['custom/world-highres3'],
-        joinBy: ['iso-a3', 'code'],
-        minSize: 15,
-        maxSize: '15%',
-        dataLabels: {
+        title: {
+          text: null
+        },
+
+        credits: {
+          enabled: false,
+          text: 'Sustainalytics.com',
+          href: 'http://www.sustainalytics.com'
+        },
+
+        mapNavigation: {
           enabled: true,
-          allowOverlap: false,
-          // formatter: function() {
-          //   return this.point.avgExposure;
-          // },
-          style: {
-            color: "#FFFFFF",
-            fontSize: "10px",
-            textShadow: "0px",
-            fontWeight: "normal"
+          enableDoubleClickZoomTo: true,
+          enableMouseWheelZoom: false,
+          buttonOptions: {
+            verticalAlign: 'bottom'
           }
         },
-        showInLegend: false
-      }]
-    });
 
-    var chart = $('#country-chart').highcharts();
-    chart.series[1].setData(data);
+        navigation: {
+          buttonOptions: {
+            height: 10,
+            width: 12,
+            symbolFill: 'rgba(255, 255, 255, 0.001)'
+          }
+        },
 
-  }
-});
+        legend: {
+          enabled: false,
+          align: 'right',
+          verticalAlign: 'bottom',
+          layout: 'vertical',
+          padding: 3,
+          itemMarginTop: 5,
+          itemMarginBottom: 5,
+          itemStyle: {
+            color: '#94989F',
+            fontSize: 10
+          },
+          reversed: false
+        },
 
-var LayoutView = Marionette.LayoutView.extend({
-  template: require('./templates/layout.hbs'),
-  listView: require('./views/list'),
-  portfolioListView: require('./views/portfolio_list'),
-  chartView: null,
+        plotOptions: {
+          map: {
+            nullColor: 'rgba(255, 255, 255, 0.15)',
+            borderColor: '#3C444E',
+            borderWidth: 0.5
+          }
+        },
+        tooltip: {
+          shared: true,
+          formatter: function(){
+            var display = '<strong>' + this.key + '</strong><br />' +
+                          // 'Total Exposure: ' + parseFloat(this.point.z).toFixed(2) + '<br />' +
+                          'Lowest: ' + parseFloat(this.point.minExposure).toFixed(2) + '<br />' +
+                          'Highest: ' + parseFloat(this.point.maxExposure).toFixed(2) + '<br />' +
+                          'Average: ' + parseFloat(this.point.avgExposure).toFixed(2);
+            return display;
+          }
+        },
 
-  regions: {
-    chart: "#exposure-chart",
-    list: "#exposure-list"
-  },
+        colorAxis: {
+            min: 1,
+            max: 1000,
+            type: 'logarithmic'
+        },
 
-  currentSortColumn: 'industryGap',
-  currentSortAscending: false,
-  currentView: 'portfolio',
-
-  initialize: function(){
-    Bus.commands.execute("sidebar:set:active", '/#/exposure');
-    $('#sidebar-menu li.subdrop').find('a').removeClass('active');
-    $('#sidebar-menu li.subdrop').find('a[href$="/#/exposure/'+this.model.get('id')+'"]').addClass('active');
-  },
-
-  onBeforeShow: function() {
-    window.scrollTo(0, 0);
-  },
-
-  onShow: function() {
-    $('button[data-exposure-type=portfolio]').addClass('active');
-    this.loadPortfolioView();
-  },
-
-  events: {
-    'click button[data-exposure-type]': 'changeExposure',
-    'click a.excel-export': 'downloadExcelReport',
-    'click a.chart-export': 'downloadCurrentChart'
-  },
-
-  changeExposure: function(e) {
-    $('button[data-exposure-type]').removeClass('active');
-    $(e.target).addClass('active');
-
-    var selected = $(e.target).data('exposure-type');
-    this.currentView = selected;
-    switch (selected) {
-      case 'portfolio':
-        return this.loadPortfolioView();
-      case 'industry':
-        return this.loadSectorView();
-      case 'country':
-        return this.loadCountryView();
-    }
-  },
-
-  downloadExcelReport: function(e) {
-    e.preventDefault();
-
-    var auth = Bus.reqres.request('auth');
-    var path = Config.baseUrl + 'portfolio/export-excel/'+this.model.get('id');
-
-    // set notification
-    Notifications.info('Download in progress', 'The portfolio exposure report is being downloaded');
-
-    // trigger download
-    $.fileDownload(path, {
-      data: {
-        'access_token': auth.getAccessToken(),
-        'include': 'assetCountry,revenueCountry'
-      }
-    }).done(function() {
-      Notifications.success('Download Complete', 'The company excel report has been downloaded successfully');
-    }).fail(function() {
-      Notifications.error('Download failed', 'There was en error in downloading the report. Please try again.');
-    });
-  },
-
-  downloadCurrentChart: function(e) {
-    e.preventDefault();
-    var chart = $('#chart').highcharts();
-    chart.exportChart();
-  },
-
-  loadPortfolioView: function() {
-    $('.chart-title').html('ESG Risk Exposure');
-    var view = new this.portfolioListView({
-      collection: this.collection
-    });
-    this.list.show(view);
-
-    this.chartView = require('./views/portfolio_chart');
-    this.displayChart(this.collection);
-  },
-
-  loadSectorView: function() {
-    $('.chart-title').html('Industry Exposure');
-    var sectorCollection = this.collection.groupBy(function(model) {
-      return model.get('industry').data.name;
-    });
-    sectorCollection = this.processCollection(sectorCollection);
-    this.displayList(sectorCollection);
-
-    this.chartView = require('./views/industry_chart');
-    this.displayChart(this.collection);
-  },
-
-  loadCountryView: function() {
-    $('.chart-title').html('Geographic Exposure');
-    var countryCollection = this.collection.groupBy(function(model) {
-      return model.get('headquarterCountry').data.name;
-    });
-    countryCollection = this.processCollection(countryCollection);
-
-    this.chartView = require('./views/country_chart');
-    this.displayChart(countryCollection);
-
-    this.displayList(countryCollection);
-  },
-
-  displayList: function(collection) {
-    this.list.show(new this.listView({
-      collection: collection
-    }));
-    $(window).trigger('resize');
-
-  },
-
-  displayChart: function(collection) {
-    this.chart.show(new this.chartView({
-      model: collection
-    }));
-  },
-
-  processCollection: function(collection) {
-    var data = [];
-    for (var key in collection) {
-
-      var array = collection[key];
-
-      var totalExposure = array.reduce(function(a, b) {
-        return a + b.get('exposureRating').totalRisk;
-      }, 0);
-
-      var maxExposure = Math.max.apply(Math,
-        array.map(function(model) {
-          return model.get('exposureRating').totalRisk;
-        })
-      );
-
-      var minExposure = Math.min.apply(Math,
-        array.map(function(model) {
-          return model.get('exposureRating').totalRisk;
-        })
-      );
-
-      data.push({
-        id: underscoreString.slugify(key),
-        name: key,
-        numItems: array.length,
-        maxExposure: parseFloat(maxExposure).toFixed(2),
-        minExposure: parseFloat(minExposure).toFixed(2),
-        totalExposure: parseFloat(totalExposure).toFixed(2),
-        avgExposure: parseFloat(totalExposure / array.length).toFixed(2),
-        range: parseFloat(maxExposure - minExposure),
-        models: array
+        series : [{
+          data : mapData,
+          mapData: Highcharts.maps['custom/world'],
+          joinBy: ['iso-a2', 'code'],
+          name: 'Population density',
+          states: {
+              hover: {
+                  color: '#BADA55'
+              }
+          },
+          tooltip: {
+              valueSuffix: '/km²'
+          }
+        }, {
+          name: 'Total Exposure',
+          type: 'mapbubble',
+          // data: data,
+          mapData: Highcharts.maps['custom/world-highres3'],
+          joinBy: ['iso-a3', 'code'],
+          minSize: 15,
+          maxSize: '15%',
+          dataLabels: {
+            enabled: true,
+            allowOverlap: false,
+            // formatter: function() {
+            //   return this.point.avgExposure;
+            // },
+            style: {
+              color: "#FFFFFF",
+              fontSize: "10px",
+              textShadow: "0px",
+              fontWeight: "normal"
+            }
+          },
+          showInLegend: false
+        }]
       });
-    }
 
-    var newCollection = new Backbone.Collection(data);
-    newCollection.comparator = function(model) {
-      return model.get('totalExposure') * -1;
-    };
-    newCollection.sort();
-    return newCollection;
+      var chart = $('#country-chart').highcharts();
+      chart.series[1].setData(data);
+    });
+
   },
 
-  childEvents: {
-    'sort:collection': 'onChildSortCollection'
-  },
+  loadIssues: function(){
+    this.template = require('./templates/prototype/issues.hbs');
+    this.render();
 
-  onChildSortCollection: function(childView, e) {
-    var selected = $(e.target).closest('th').data('sort');
-    this.currentSortColumn = selected;
-    this.currentSortAscending = !this.currentSortAscending;
-    var multiplier = this.currentSortAscending ? 1 : -1;
-
-    switch (selected) {
-      case 'name':
-        if (this.currentSortAscending) {
-          this.collection.comparator = function(model) {
-            return model.get(selected);
-          }
-        } else {
-          this.collection.comparator = function(a, b) {
-            if (a.get(selected) > b.get(selected)) return -1;
-            if (a.get(selected) < b.get(selected)) return 1;
-            return 0;
-          }
-        }
-        break;
-      case 'industry':
-      case 'headquarterCountry':
-        if (this.currentSortAscending) {
-          this.collection.comparator = function(model) {
-            return model.get(selected).data.name;
-          }
-        } else {
-          this.collection.comparator = function(a, b) {
-            if (a.get(selected).data.name > b.get(selected).data.name) return -1;
-            if (a.get(selected).data.name < b.get(selected).data.name) return 1;
-            return 0;
-          }
-        }
-        break;
-
-      case 'totalRisk':
-      case 'adjustedBaselineImpact':
-      case 'incidentImpact':
-      case 'industryGap':
-        this.collection.comparator = function(model) {
-          return model.get('exposureRating')[selected] * multiplier;
-        };
-        break;
-
-      case 'preparednessRating':
-        this.collection.comparator = function(model) {
-          return model.get(selected) * multiplier;
-        };
-        break;
-
-      case 'group-name':
-      case 'group-numItems':
-      case 'group-totalExposure':
-      case 'group-minExposure':
-      case 'group-maxExposure':
-      case 'group-avgExposure':
-        var groupName = (this.currentView == 'country' ? 'headquarterCountry' : 'industry');
-        var field = selected.substring(6);
-        var collection = this.collection.groupBy(function(model) {
-          return model.get(groupName).data.name;
-        });
-        collection = this.processCollection(collection);
-        if (field == 'name') {
-          if (this.currentSortAscending) {
-            collection.comparator = function(model) {
-              return model.get(field);
+    $('#issues-chart').highcharts({
+        chart: {
+            type: 'column',
+		        backgroundColor: 'rgba(255, 255, 255, 0.001)',
+        },
+        title: {
+            text: null
+        },
+        legend: {
+        	enabled: false
+        },
+        exporting: {
+        	enabled: false
+        },
+        credits: {
+        	enabled: false
+        },
+        xAxis: {
+            min: 0,
+            lineColor: '#4D545E',
+            gridLineColor: '#4D545E',
+            categories: [
+                'Emissions, Effluents and Waste',
+                'Health and Safety',
+                'Human Rights',
+                'Land Use and Biodiversity',
+                'Community Relations',
+                'Business Ethics',
+                'Water Use',
+                'Product Sustainability',
+                'Energy Use and GHG Emissions',
+            ],
+            crosshair: true,
+            labels: {
+            	autoRotation: 0,
+              style: {
+                fontSize: '11px',
+                color: '#FFFFFF'
+              },
+            },
+            tickLength: 0
+        },
+        yAxis: {
+            min: 0,
+            max: 10,
+            lineColor: '#4D545E',
+            gridLineColor: '#4D545E',
+            title: {
+                text: null
+            },
+            labels: {
+              style: {
+                color: '#9ea1a7'
+              },
+            },
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0,
+                dataLabels: {
+                  enabled: true,
+                  style: {
+                    color: '#FFFFFF',
+                    fontWeight: 'normal',
+                    textShadow: "0px"
+                  },
+                },
             }
-          } else {
-            collection.comparator = function(a, b) {
-              if (a.get(field) > b.get(field)) return -1;
-              if (a.get(field) < b.get(field)) return 1;
-              return 0;
-            }
-          }
-        } else {
-          collection.comparator = function(model) {
-            return model.get(field) * multiplier;
-          };
-        }
-        collection.sort();
+        },
 
-        return this.displayList(collection);
-        break;
-    }
 
-    this.collection.sort();
-
-    // re-render the table
-    if ($(e.target).closest('table').attr('id') == 'companyListTable') {
-      this.displayChart(this.collection);
-    }
-
+        series: [{
+            name: 'ESG Issue Exposure',
+            data: [8.1, 7.7, 3.4, 2.8, 5.1, 9.2, 4.3, 3.1, 5.8],
+		        color: 'rgba(255,147,30,0.6)',
+        }]
+    });
   }
-
 });
 
 module.exports = {
-  Layout: LayoutView,
   RiskRating: PrototypeRiskView
 };
