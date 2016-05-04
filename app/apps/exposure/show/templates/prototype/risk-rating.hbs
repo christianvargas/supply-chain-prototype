@@ -1,65 +1,61 @@
 <div class="main-color hidden-xs padding-top-double padding-bottom-double">
     <div class="container">
         <div class="margin-bottom-double">
-            <div class="pull-left">
-                <h2 class="title">Dashboard</h2>
-                <h2 class="title chart-title text-darkgray">Direct Suppliers</h2>
-
-            </div>
-            <div class="pull-right">
+            <div class="text-center">
                 <div class="btn-toolbar">
-                    <button type="button" data-exposure-type="risk-rating" class="btn btn-round btn-transparent active">ESG Risk Rating</button>
-                    <button type="button" data-exposure-type="sub-industry" class="btn btn-round btn-transparent">Sub-Industry Exposure</button>
-                    <button type="button" data-exposure-type="country" class="btn btn-round btn-transparent">Country Exposure</button>
-                    <button type="button" data-exposure-type="country" class="btn btn-round btn-transparent">Controversies</button>
+                  <button type="button" data-exposure-type="risk-rating" class="btn btn-round btn-transparent active">ESG Risk Rating</button>
+                  <button type="button" data-exposure-type="sub-industry" class="btn btn-round btn-transparent">Sub-Industry Exposure</button>
+                  <button type="button" data-exposure-type="country" class="btn btn-round btn-transparent">Country Exposure</button>
+                  <button type="button" data-exposure-type="issues" class="btn btn-round btn-transparent">ESG Issue Exposure</button>
+                  <button type="button" data-exposure-type="controversies" class="btn btn-round btn-transparent">Controversies</button>
                 </div>
             </div>
-            <div class="clearfix"></div>
         </div>
 
         <div id="exposure-chart">
-          <div style="background:rgba(0,0,0,0.15); padding: 30px;">
-            <center>
-                <div id="heatmap" style="width:800px; height:500px;"></div>
-            </center>
+          <div class="row">
+            <div class="col-sm-9">
+              <div id="heatmap" style="width:100%; height:500px;"></div>
+            </div>
+            <div class="col-sm-3">
+              <div class="legend margin-top margin-bottom-half">ESG Risk Rating</div>
+              <select class="form-control rounded">
+                <option>-- All --</option>
+              </select>
+
+              <div class="legend margin-top margin-bottom-half">Country</div>
+              <select class="form-control rounded">
+                <option>-- All --</option>
+                <option selected="selected">United States</option>
+              </select>
+
+              <div class="legend margin-top margin-bottom-half">Sub-Industry</div>
+              <select class="form-control rounded">
+                <option>-- All --</option>
+              </select>
+
+              <div class="legend margin-top margin-bottom-half">Risk Premium</div>
+              <select class="form-control rounded">
+                <option>-- All --</option>
+              </select>
+
+              <div class="legend margin-top margin-bottom-half">Procurement Category</div>
+              <select class="form-control rounded">
+                <option>-- All --</option>
+              </select>
+
+              <div class="legend margin-top margin-bottom-half">Relationship Value</div>
+              <select class="form-control rounded">
+                <option>-- All --</option>
+              </select>
+
+              <div class="text-right">
+                <a href="#" class="btn btn-sm btn-primary btn-round margin-top" style="color:#FFF;">Apply Filters</a>
+              </div>
+
+            </div>
           </div>
 
-            <div class="hidden">
-                <div class="padding-top-double">
-                    <div class="pull-left">
-                        <div class="company-risk-legend">
-                            <span class="legend">
-                              <i class="fa fa-square text-adjustedBaseline"></i>&nbsp; Company Risk
-                            </span> &nbsp;&nbsp;&nbsp;
-                            <span class="legend">
-                              <i class="fa fa-square text-management"></i>&nbsp; ESG Management Score
-                            </span> &nbsp;&nbsp;&nbsp;
-                            <span class="legend">
-                              <i class="fa fa-circle"></i>&nbsp; Market Risk
-                            </span>
-                        </div>
-                        <div class="risk-premium-legend hidden">
-                            <span class="legend">
-                              <i class="fa fa-square text-red1"></i>&nbsp; Above Market
-                            </span> &nbsp;&nbsp;&nbsp;
-                            <span class="legend">
-                              <i class="fa fa-square text-green1"></i>&nbsp; Below Market
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="pull-right">
-                        <a href="#" class="legend excel-export"><i class="ti-share"></i>&nbsp; Export Data</a> &nbsp;&nbsp;&nbsp;
-                        <a href="#" class="legend chart-export"><i class="ti-download"></i>&nbsp; Download Chart</a>
-                    </div>
-
-                    <div class="clearfix"></div>
-                </div>
-
-                <p class="padding-top-double">From an investment perspective, ESG risk is driven by the inherent exposure of a company to ESG issues and a company’s approach to the management of those issues. The chart above illustrates the ESG risk exposure facing portfolio companies
-                    and how prepared they are to manage risks.</p>
-                <p>To view more information about company ESG risk exposure click on any company within the bar chart or table below.</p>
-            </div>
         </div>
     </div>
 </div>
@@ -72,8 +68,8 @@
                     <thead>
                         <tr>
                             <th data-sort="name">Name</th>
-                            <th data-sort="industry">Industry</th>
-                            <th data-sort="headquarterCountry">Domicile</th>
+                            <th data-sort="industry">Sub-Industry</th>
+                            <th data-sort="headquarterCountry">Country</th>
                             <th data-sort="totalRisk" class="text-center">
                                 <span tabindex="0" class="popover-text" role="button" data-toggle="popover" data-trigger="focus" title="Company Risk" data-content="Represents the potential business impact and reputational risk resulting from mismanaged environmental, social and governance (ESG) issues. This value takes into account the country, or countries, in which a company operates as well as company-specific incidents.&nbsp;Higher Company Risk signifies a higher likelihood of ESG-related challenges. Assessed on a scale of 110.">
                                   Company<br>Risk
