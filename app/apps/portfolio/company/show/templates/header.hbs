@@ -1,0 +1,202 @@
+<div class="container">
+  <div class="row margin-bottom">
+    <div class="col-sm-3">
+      <h4 class="no-margin hidden">Company</h4>
+      <h2>{{ name }}</h2>
+      <div>{{ industry.data.name }}</div>
+      <div>{{ employees }} Employees</div>
+      <div class="margin-top-half">
+        <div class="row">
+          <div class="col-xs-3">Domicile</div>
+          <div class="col-xs-9"><i class="ti-location-pin"></i>&nbsp;&nbsp;{{ headquarterCountry.data.name }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Assets</div>
+          <div class="col-xs-9"><i class="ti-location-pin"></i>&nbsp;&nbsp;{{ assetCountry.data.name }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Revenue</div>
+          <div class="col-xs-9"><i class="ti-location-pin"></i>&nbsp;&nbsp;{{ revenueCountry.data.name }}</div>
+        </div>
+      </div>
+      <div class="margin-top-half">
+        <a href="{{{ url }}}" target="_blank">{{ url }}</a>
+      </div>
+    </div>
+
+    <div class="col-sm-9">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="row">
+            <div class="col-sm-11">
+              <h4 class="no-margin">Company Risk</h4>
+              <div class="ratings">
+                <div class="left pull-left">
+                  <span class="big-number text-white-1 thin">{{ exposureRating.totalRisk }}</span>
+                </div>
+                <div class="right">
+                  <div class="pull-left label-small">Low</div>
+                  <div class="pull-right label-small">High</div>
+
+                  <div class="clearfix">&nbsp;</div>
+
+                  <div class="bars">
+                    <div class="progress progress-xs transparent">
+                      <div class="progress-bar progress-bar-adjustedBaseline" role="progressbar" aria-valuenow="{{math exposureRating.adjustedBaselineImpact '*' 10 }}" aria-valuemin="0" aria-valuemax="100" style="width: {{math exposureRating.adjustedBaselineImpact '*' 10 }}%">
+                        <span class="sr-only">{{math exposureRating.adjustedBaselineImpact '*' 10 }}</span>
+                      </div>
+                    </div>
+                    <div class="progress progress-xs transparent">
+                      <div class="progress-bar progress-bar-darkgray" role="progressbar" aria-valuenow="{{math exposureRating.baselineBusinessImpact '*' 10 }}" aria-valuemin="0" aria-valuemax="100" style="width: {{math exposureRating.baselineBusinessImpact '*' 10 }}%">
+                        <span class="sr-only">{{math exposureRating.baselineBusinessImpact '*' 10 }}</span>
+                      </div>
+                    </div>
+                    <div class="progress progress-xs transparent">
+                      <div class="progress-bar progress-bar-transparent" role="progressbar" aria-valuenow="{{math (min exposureRating.baselineBusinessImpact exposureRating.totalRisk) '*' 10 }}" aria-valuemin="0" aria-valuemax="100" style="width: {{math (min exposureRating.baselineBusinessImpact exposureRating.totalRisk) '*' 10 }}%">
+                        <span class="sr-only">{{math (min exposureRating.baselineBusinessImpact exposureRating.totalRisk) '*' 10 }}</span>
+                      </div>
+                      <div class="progress-bar {{#is exposureRating.industryGap '>' 0}} progress-bar-red-1 {{else}}  progress-bar-green-1 {{/is}}" role="progressbar" aria-valuenow="{{math (absDiff exposureRating.baselineBusinessImpact exposureRating.totalRisk) '*' 10 }}" aria-valuemin="0"
+                      aria-valuemax="100" style="width: {{math (absDiff exposureRating.baselineBusinessImpact exposureRating.totalRisk) '*' 10 }}%">
+                        <span class="sr-only">{{math (absDiff exposureRating.baselineBusinessImpact exposureRating.totalRisk) '*' 10 }}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pull-left label-medium">
+                    <span class="text-white-1 label-large">{{ exposureRating.baselineBusinessImpact }}</span>
+                    <span class="label-xs"><i class="fa fa-square"></i></span>
+                    <div style="display:inline-flex;">Market
+                      <br />Risk</div>
+                  </div>
+                  <div class="pull-right label-medium">
+                    <span class="text-white-1 label-large">{{withSign exposureRating.industryGap }}%</span>
+                    <span class="label-xs"><i class="{{#is exposureRating.industryGap '>' 0}} text-red-1 {{else}} text-green-1 {{/is}} fa fa-square"></i></span>
+                    <div style="display:inline-flex;">Risk
+                      <br />Premium</div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="clearfix">&nbsp;</div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-sm-6">
+          <div class="row">
+            <div class="col-sm-11">
+              {{#if preparednessRating }}
+                <h4 class="no-margin">ESG Management</h4>
+                <div class="margin-top">
+                  <div class="ratings">
+                    <div class="left pull-left">
+                      <span class="big-number text-white-1 thin">
+                        {{ preparednessRating }}
+                      </span>
+                    </div>
+                    <div class="right">
+                      <div class="pull-left label-small">Low</div>
+                      <div class="pull-right label-small">High</div>
+
+                      <div class="clearfix">&nbsp;</div>
+
+                      <div class="bars">
+                        <div class="progress progress-xs transparent">
+                          <div class="progress-bar progress-bar-management" role="progressbar" aria-valuenow="{{math preparednessRating '*' 10 }}" aria-valuemin="0" aria-valuemax="100" style="width: {{math preparednessRating '*' 10 }}%">
+                            <span class="sr-only">{{math preparednessRating '*' 10 }}</span>
+                          </div>
+                        </div>
+                        <div class="progress progress-xs transparent">
+                          <div class="progress-bar progress-bar-darkgray" role="progressbar" aria-valuenow="{{math industry.data.averageManagementScore '*' 10 }}" aria-valuemin="0" aria-valuemax="100" style="width: {{math industry.data.averageManagementScore '*' 10 }}%">
+                            <span class="sr-only">{{math industry.data.averageManagementScore '*' 10 }}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="progress progress-xs transparent">
+                        <div class="progress-bar progress-bar-transparent" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                          <span class="sr-only">0</span>
+                        </div>
+                      </div>
+
+                      <div class="pull-left label-medium">
+                        <span class="text-white-1 label-large">{{ industry.data.averageManagementScore }}</span>
+                        <span class="label-xs"><i class="fa fa-square"></i></span>
+                        <div style="display:inline-flex;">Peer
+                          <br />Benchmark</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="clearfix">&nbsp;</div>
+                </div>
+              {{else}}
+                {{#if currentAssessment}}
+                  <h4 class="no-margin">ESG Assessment Progress</h4>
+                  <div class="margin-top">
+
+                    <div class="ratings">
+                      <div class="left pull-left">
+                        <span class="big-number text-white-1 thin">
+                          {{ currentAssessment.data.percentageComplete }}<span class="small">%</span>
+                        </span>
+                      </div>
+                      <div class="right">
+                        <div class="pull-left label-small">0%</div>
+                        <div class="pull-right label-small">100%</div>
+
+                        <div class="clearfix">&nbsp;</div>
+
+                        <div class="bars">
+                          <div class="progress progress-xs transparent">
+                            <div class="progress-bar progress-bar-management" role="progressbar" aria-valuenow="{{ currentAssessment.data.percentageComplete }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ currentAssessment.data.percentageComplete }}%">
+                              <span class="sr-only">{{ currentAssessment.data.percentageComplete }}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {{#if currentAssessment.data.dueDate}}
+                          <p class="legend">Due Date: {{currentAssessment.data.dueDate}}</p>
+                        {{/if}}
+                        <a href="/#/assessments/view/{{ currentAssessment.data.id }}" class="btn btn-round btn-white margin-top-half">Continue Assessment</a>
+
+                      </div>
+                    </div>
+                    <div class="clearfix">&nbsp;</div>
+
+                  </div>
+                {{else}}
+                  <h4 class="no-margin">ESG Management</h4>
+                  <div class="margin-top">
+
+                    {{#if engagementStatus}}
+                      <p><i class="ti-check text-green-1"></i>&nbsp;&nbsp;Selected for Engagement</p>
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-round btn-management-stroke dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Begin Engagement &nbsp;<i class="ti-angle-down"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                          <li><a href="#" class="create-assessment">Enter Data</a></li>
+                          <li><a href="#" class="request-assessment">Assessment Request</a></li>
+                          <li><a href="#" class="review-indicators">Review Indicators</a></li>
+                          <li role="separator" class="divider"></li>
+                          <li><a href="#" class="cancel-engage">Cancel Selection</a></li>
+                        </ul>
+                      </div>
+                    {{else}}
+                      <p>No assessment has been completed for this company</p>
+                      <a href="#" class="btn btn-round btn-white engage">Select for Engagement</a>
+                    {{/if}}
+                  </div>
+                {{/if}}
+              {{/if}}
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

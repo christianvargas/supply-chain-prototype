@@ -13,6 +13,7 @@ require('./apps/company/company_app');
 require('./apps/watchlist/watchlist_app');
 require('./apps/thread/thread_app');
 require('./apps/exposure/exposure_app');
+require('./apps/portfolio/portfolio_app');
 
 // load and start the application
 var App = require('./app');

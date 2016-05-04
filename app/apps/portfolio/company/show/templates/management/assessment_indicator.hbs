@@ -1,0 +1,39 @@
+  <td>
+    <div class="row">
+      <div class="col-xs-2 text-center">
+        <span class="label label-{{ indicator.data.type }} circle">{{ questionNumber }}</span>
+      </div>
+      <div class="col-xs-10">
+        {{ indicator.data.name }}
+        <div>{{ indicator.data.code }}</div>
+      </div>
+    </div>
+  </td>
+  <td class="text-center">{{ score }}</td>
+  <td class="text-center">
+    {{valueByProperty indicatorBenchmarks indicator.data.code }}
+  </td>
+  <td>
+    {{ analysis }}
+    {{#if subResponse}}
+      <p class="margin-top">Includes:</p>
+      <ul class="list">
+        {{#each_with_key indicator.data.subOptions key=(getKey response) }}
+          {{#if (exists_with_key ../subResponse (getKey ../response) @key) }}
+            <li>{{ this }}</li>
+          {{/if}}
+        {{/each_with_key }}
+      </ul>
+    {{/if}}
+  </td>
+  <td>{{ comments }}</td>
+  <td>
+    {{#if uploadedFiles}}
+      <p>Uploaded Documents:</p>
+      <ul class="list">
+      {{#each uploadedFiles}}
+        <li><a href="#" class="download-file" data-original-name="{{original_name}}">{{ original_name }}</a></li>
+      {{/each}}
+      </ul>
+    {{/if}}
+  </td>

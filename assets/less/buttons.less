@@ -114,6 +114,16 @@
   }
 }
 
+.btn-none, .btn-none:hover, .btn-none:focus {
+	background-color: transparent;
+	color: @maintextcolor;
+  border: none;
+
+  &.active, &.active:hover {
+    border: 1px solid @maintextcolor;
+  }
+}
+
 .btn-group-sm>.btn, .btn-sm {
   padding: 8px 14px;
   text-transform: uppercase;

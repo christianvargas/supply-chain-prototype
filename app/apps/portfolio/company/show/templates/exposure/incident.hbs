@@ -1,0 +1,43 @@
+<dl class="dl-horizontal dl-icon margin-top">
+  <dt>
+    {{#if incident}}
+      <i class="ti-alert"></i>
+    {{else}}
+      <i class="ti-receipt"></i>
+    {{/if}}
+  </dt>
+  <dd>
+    <div class="headline">
+      <a href="{{ url }}" target="_blank">{{ headline }}</a>
+    </div>
+    <div class="incident-date">
+      {{ publishedAt }}
+      &nbsp;|&nbsp;
+      {{ source }}
+    </div>
+
+    {{#if incident }}
+      <div class="row margin-top-half">
+        <div class="clearfix">
+          <span class="col-sm-4 incident-date">Business Impact</span>
+          <span class="col-sm-3 incident-date pull-right">{{ incident.data.impactValue }}</span>
+          <div class="progress progress-sm">
+    			  <div class="progress-bar progress-bar-lightgray" role="progressbar" aria-valuenow="{{ incident.data.impactValue }}" aria-valuemin="0" aria-valuemax="10" style="width: {{math incident.data.impactValue '*' 10 }}%">
+    				<span class="sr-only">{{ incident.data.impactValue }}</span>
+    			  </div>
+    			</div>
+        </div>
+
+        <div class="clearfix">
+          <span class="col-sm-4 incident-date">Reputational Risk</span>
+          <span class="col-sm-3 incident-date pull-right">{{ incident.data.reputationalRiskValue }}</span>
+          <div class="progress progress-sm">
+    			  <div class="progress-bar progress-bar-lightgray" role="progressbar" aria-valuenow="{{ incident.data.reputationalRiskValue }}" aria-valuemin="0" aria-valuemax="10" style="width: {{math incident.data.reputationalRiskValue '*' 10 }}%">
+    				<span class="sr-only">{{ incident.data.reputationalRiskValue }}</span>
+    			  </div>
+    			</div>
+        </div>
+      </div>
+    {{/if}}
+  </dd>
+</dl>

@@ -115,6 +115,8 @@ var PrototypeRiskView = Marionette.ItemView.extend({
 
     $('#heatmap').highcharts({
         chart: {
+            margin: [30, 30, 30, 30],
+            padding: [30, 30, 30, 30],
             type: 'scatter',
             zoomType: 'xy',
             backgroundColor: {

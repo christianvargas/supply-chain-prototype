@@ -1,0 +1,186 @@
+<div class="row margin-top-double">
+  <div class="col-sm-8">
+    <h2>Key ESG Issues Overview</h2>
+    <p>Each industry is exposed to a unique set of material ESG issues of varying significance. The Key ESG Issues below represent the most relevant ESG issue areas that, if mismanaged, may negatively impact financial performance and business value.</p>
+  </div>
+  <div class="col-sm-4 text-right">
+    <div class="margin-top">
+      <a href="#" class="export-excel legend text-darkgray">
+        <i class="ti-share"></i>&nbsp;&nbsp;Export Company Profile
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="row margin-top-double">
+  <div class="col-sm-6">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Key ESG Issue</th>
+          <th class="text-center">
+            <span tabindex="0" class="popover-text" role="button" data-toggle="popover" data-trigger="focus" title="Market Risk" data-content="Represents the inherent risk or degree of impact that material ESG issues may have on a company operating within an industry, regardless of the location of operations.  Assessed on a scale of 1-10.">
+              Market<br />Risk
+            </span>
+          </th>
+          <th class="text-center">
+            <span tabindex="0" class="popover-text" role="button" data-toggle="popover" data-trigger="focus" title="Company Risk" data-content="Represents the potential business impact and reputational risk resulting from mismanaged environmental, social and governance (ESG) issues. This value takes into account the country, or countries, in which a company operates as well as company-specific incidents. Higher Company Risk signifies a higher likelihood of ESG-related challenges. Assessed on a scale of 1-10.">
+              Company<br />Risk
+            </span>
+          </th>
+          <th class="text-center">
+            <span tabindex="0" class="popover-text" role="button" data-toggle="popover" data-trigger="focus" title="Risk Premium" data-content="The Risk Premium represents the percent difference between the Market and Company Risks.">
+              Risk<br />Premium
+            </span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each exposureRating.adjustedBaselineIssues }}
+        <tr>
+          {{#with (findByKeyValue ../issues 'id' id)}}
+            <td>
+              <i class="fa fa-circle text-chartColor-{{@index}}"></i>
+              &nbsp;&nbsp;
+              <span class="popover-text" tabindex="0" role="button" data-toggle="popover" data-placement="top" data-trigger="focus" title="{{ name }}" data-content="{{ description }}">
+                {{ name }}
+              </span>
+            </td>
+          {{/with}}
+          <td class="text-center">{{ baselineBusinessImpact }}</td>
+          <td class="text-center">{{ businessImpact }}</td>
+          <td class="text-center">
+            <i class="{{#is riskPremium '>' 0}} ti-arrow-up text-red-1 {{else}} ti-arrow-down text-green-1 {{/is}}"></i>
+            {{withSign riskPremium }}%
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+    <div class="text-center">
+
+    </div>
+  </div>
+  <div class="col-sm-6 text-center">
+    <div id="country-sector-exposure-chart"></div>
+  </div>
+</div>
+
+<div class="row margin-top">
+  <div class="col-sm-6">
+    <a href="#" class="widget-toggle-link" data-target="issues">
+      <h2><i class="circle-icon ti-plus"></i>&nbsp; Beta Factors Analysis</h2>
+    </a>
+  </div>
+</div>
+<div class="widget no-margin" data-id="issues">
+  <div class="widget-content" style="display:none;">
+    <div class="row">
+      <div class="col-sm-8">
+        <p class="margin-bottom-double" style="padding-left:26px;">
+          The country, or countries, in which a company operates have a large influence on the level of ESG risk exposure. Beta factors are applied to each Key ESG Issue to determine whether ESG risk increases or decreases when location is taken into account. Additionally, news of a company’s alleged or actual misconduct with ESG implications may increase exposure at the Key ESG level relative to the significance of the incident.
+        </p>
+      </div>
+    </div>
+
+    <table class="table">
+      <thead>
+        <th>Key ESG Issue</th>
+        <th class="text-center">
+          <span tabindex="0" class="popover-text" role="button" data-toggle="popover" data-trigger="focus" title="Market Risk" data-content="Represents the inherent risk or degree of impact that material ESG issues may have on a company operating within an industry, regardless of the location of operations.  Assessed on a scale of 1-10.">
+            Market<br />Risk
+          </span>
+        </th>
+        <th class="text-center">
+          <span tabindex="0" class="popover-text" role="button" data-toggle="popover" data-trigger="focus" title="Company Risk" data-content="Represents the potential business impact and reputational risk resulting from mismanaged environmental, social and governance (ESG) issues. This value takes into account the country, or countries, in which a company operates as well as company-specific incidents. Higher Company Risk signifies a higher likelihood of ESG-related challenges. Assessed on a scale of 1-10.">
+            Company<br />Risk
+          </span>
+        </th>
+        <th class="text-center">
+          <span tabindex="0" class="popover-text" role="button" data-toggle="popover" data-trigger="focus" title="Risk Premium" data-content="The Risk Premium represents the percent difference between the Market and Company Risks.">
+            Risk<br />Premium
+          </span>
+        </th>
+        <th class="text-center">
+          <span tabindex="0" class="popover-text" role="button" data-toggle="popover" data-trigger="focus" title="Domicilie Risk Adjustment" data-content="Exposure to ESG risks may be influenced by the country of domicile. The values below include the adjusted exposure score and percentage change from the market risk baseline.">
+            Domicilie<br />Risk Adjustment
+          </span>
+          <!-- <br /><em>{{ headquarterCountry.data.name }}</em> -->
+        </th>
+        <th class="text-center">
+          <span tabindex="0" class="popover-text" role="button" data-toggle="popover" data-trigger="focus" title="Assets Location Risk Adjustment" data-content="Exposure to ESG risks may be influenced by the country in which the majority of company assets are located (e.g. manufacturing facilities). The values below include the adjusted exposure score and percentage change from the market risk baseline.">
+            Assets Location<br />
+            Risk Adjustment
+          </span>
+          <!-- <br /><em>{{ assetCountry.data.name }}</em> -->
+        </th>
+        <th class="text-center">
+          <span tabindex="0" class="popover-text" role="button" data-toggle="popover" data-trigger="focus" data-placement="left" title="Revenue Segmentation Risk Adjustment" data-content="Exposure to ESG risks may be influenced by the country with the highest level of sales revenue. The values below include the adjusted exposure score and percentage change from the market risk baseline.">
+            Revenue Segmentation<br />
+            Risk Adjustment
+          </span>
+          <!-- <br /><em>{{ revenueCountry.data.name }}</em> -->
+        </th>
+        <!-- <th class="text-center">
+          Country Weight
+          <a tabindex="0" class="popover-icon" role="button" data-toggle="popover" data-trigger="focus" data-placement="left" title="Country Weight" data-content="Represents the weight of the country adjusted values for the overall exposure score (as a percentage).">
+            <i class="ti-help-alt"></i>
+          </a>
+        </th> -->
+      </thead>
+      <tbody>
+        {{#each exposureRating.adjustedBaselineIssues }}
+        <tr>
+          <td>
+            {{#with (findByKeyValue ../issues 'id' id)}}
+              <i class="fa fa-circle text-chartColor-{{@index}}"></i>
+              &nbsp;&nbsp;
+              <span tabindex="0" class="popover-text" role="button" data-toggle="popover" data-trigger="focus" title="{{ name }}" data-content="{{ description }}">
+                {{ name }}
+              </span>
+            {{/with}}
+          </td>
+          <td class="text-center">{{ baselineBusinessImpact }}</td>
+          <td class="text-center">{{ businessImpact }}</td>
+          <td class="text-center" style="border-right:1px dashed #DDD;">
+            <i class="{{#is riskPremium '>' 0}} ti-arrow-up text-red-1 {{else}} ti-arrow-down text-green-1 {{/is}}"></i>
+            {{withSign riskPremium }}%
+          </td>
+          <td class="text-center">
+            {{#is headquarterWeight '>' 0 }}
+              {{ headquarterBusinessImpact }}
+              &nbsp;<i class="{{#is headquarterDifference '>' 0}} ti-arrow-up text-red-1 {{else}} ti-arrow-down text-green-1 {{/is}}"></i>&nbsp;
+              {{withSign headquarterDifference }}%
+            {{ else }}
+              -
+            {{/is}}
+          </td>
+          <td class="text-center">
+            {{#is assetWeight '>' 0 }}
+              {{ assetBusinessImpact }}
+              &nbsp;<i class="{{#is assetDifference '>' 0}} ti-arrow-up text-red-1 {{else}} ti-arrow-down text-green-1 {{/is}}"></i>&nbsp;
+              {{withSign assetDifference }}%
+            {{ else }}
+              -
+            {{/is}}
+          </td>
+          <td class="text-center">
+            {{#is revenueWeight '>' 0 }}
+              {{ revenueBusinessImpact }}
+              &nbsp;<i class="{{#is revenueDifference '>' 0}} ti-arrow-up text-red-1 {{else}} ti-arrow-down text-green-1 {{/is}}"></i>&nbsp;
+              {{withSign revenueDifference }}%
+            {{ else }}
+              -
+            {{/is}}
+          </td>
+          <!-- <td class="text-center">{{ headquarterWeight }} | {{ assetWeight }} | {{ revenueWeight }}</td> -->
+        </tr>
+        {{/each}}
+
+      </tbody>
+    </table>
+
+
+  </div>
+</div>
